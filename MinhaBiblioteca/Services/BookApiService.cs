@@ -6,7 +6,7 @@ namespace MinhaBiblioteca.Services
 {
     public class BookApiService
     {
-        public async Task<BookApi>getNameBooks(string BookName)
+        public async Task<BookApi>GetBookName(string BookName)
         {
             HttpClient client = new HttpClient();
             var response = await client.GetAsync($"https://www.googleapis.com/books/v1/volumes?q={BookName}&key=AIzaSyCKyn2BShRjT4lzW7SxdXMcBhlnLdFb3G4");
