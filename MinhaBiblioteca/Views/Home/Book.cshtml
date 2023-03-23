@@ -1,26 +1,106 @@
 ﻿@foreach (var item in ViewBag.book)
 {
     <div class="maincontainer">
-        @item.titulo
-        <br>
-        <img src="@item.linkImg"/>
-    <br>
-        @item.autor
-        <br>
-        @item.editora
-        <br>
-        @item.dataEdicao
-        <br>
-        @item.categoria
-        <br>
-        @item.paginas
 
+        <div class="imgcontainer"><img src="@item.linkImg" /></div>
+
+        <div class="infos">
+            <h2>Informações do Livro</h2>
+            <label>Titulo</label>
+            @item.titulo
+            <br>
+            <label>Autor:</label>
+            @item.autor
+            <br>
+            <label>Editora:</label>
+            @item.editora
+            <br>
+            <label>Data de Ediçao:</label>
+            @item.dataEdicao
+            <br>
+            <label>Categoria:</label>
+            @item.categoria
+            <br>
+            <label>Numero de Paginas:</label>
+            @item.paginas
+            <br/>
+            <label>Lingua:</label>
+            @item.pais
+            <br/>
+            <label>disponibilidade:</label>
+            @item.disponivel
+            <br/>
+            <br />
+            <div class="preco"> 
+                <label>Preco:</label>
+                @item.preco
+            </div>
+            <br />
+
+            <button class=" btn btn-estante" type="submit"> Adicionar a estante </button>
+            <button class="btn btn-comprar" type="submit"> Comprar </button>
+
+            
+
+        </div>
+      
     </div>
 
     <style>
         .maincontainer{
             display:flex;
-            flex-direction:column;
+            flex-direction:row;
+            width:100%; 
+            margin-top:90px;
         }
+
+        .imgcontainer{
+            width: 49%;
+            height: 700px;
+            text-align: end;
+            margin-right: 5px
+        }
+
+        img{
+            width:40%;
+            height: 50%;
+            
+        }
+       
+        .infos{
+            width:49%;
+            height:700px;
+            text-align: center;
+            display:block;
+            letter-spacing: 2px;
+            
+        }
+
+        label{
+            font-weight:500;
+        }
+
+        .preco{
+            font-size:24px;
+        }
+
+        .btn{
+            width: 65%;
+            padding:10px;
+        }
+
+        .btn-comprar{
+            background-color:cornflowerblue;
+            margin-top:10px;
+        }
+
+        .btn-estante{
+            background-color: lightcoral;
+        }
+     
+
+
+
+
     </style>
 }

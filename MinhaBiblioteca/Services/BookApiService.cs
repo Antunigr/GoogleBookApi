@@ -56,6 +56,11 @@ namespace MinhaBiblioteca.Services
                     dataEdicao = item.volumeInfo.publishedDate,
                     categoria = item.volumeInfo.categories != null ? item.volumeInfo.categories[0] : null,
                     paginas = item.volumeInfo.pageCount,
+                    pais = item.saleInfo.country,
+                    disponivel = item.saleInfo.saleability,
+                    Ebook = item.saleInfo.isEbook,
+                    preco = item.saleInfo.listPrice.amount,
+                    moeda = item.saleInfo.listPrice.currencyCode,
                 };
                 books.Add(book);
             }
@@ -74,9 +79,11 @@ namespace MinhaBiblioteca.Services
 
         public VolumeInfo volumeInfo { get; set; }
         public string id { get;  set; }
+        public SaleInfo saleInfo { get; set; }
+
     }
 
-  
+
     public class VolumeInfo
     {
         public string publishedDate { get; set; }
@@ -93,9 +100,26 @@ namespace MinhaBiblioteca.Services
         public List<string> categories { get; set; }
 
         public int pageCount { get; set; }
+      
     }
 
-        public class ImageLinks
+    public class SaleInfo
+    {
+        public string? country { get; set; }
+        public string? saleability { get; set; }
+        public bool? isEbook { get; set; }
+    
+
+        public ListPrice listPrice { get; set; }
+    }
+
+    public class ListPrice
+    {
+        public decimal? amount { get; set; }
+        public string? currencyCode { get; set; }
+    }
+
+    public class ImageLinks
         {
             public string thumbnail { get; set; }
         }

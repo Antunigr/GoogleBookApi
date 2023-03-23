@@ -35,6 +35,27 @@ namespace MinhaBiblioteca.Models
         [JsonProperty("pageCount")]
         public int paginas { get; set; }
 
+        [JsonProperty("saleInfo")]
+        public string salesInfo { get; set; }
+
+        [JsonProperty("country")]
+        public string? pais { get; set; }
+
+        [JsonProperty("saleability")]
+        public string? disponivel { get; set; }
+
+        [JsonProperty("isEbook")]
+        public bool? Ebook { get; set; }
+
+        [JsonProperty("amount")]
+        public decimal? preco { get; set; }
+
+        [JsonProperty("currencyCode")]
+        public string? moeda { get; set; }
+
+        [JsonProperty("listPrice")]
+        public string listadeprecos{ get; set; }
+
 
     }
 }
