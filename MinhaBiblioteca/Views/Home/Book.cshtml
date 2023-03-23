@@ -1,1 +1,26 @@
-﻿<h1>Book</h1>
+﻿@foreach (var item in ViewBag.book)
+{
+    <div class="maincontainer">
+        @item.titulo
+        <br>
+        <img src="@item.linkImg"/>
+    <br>
+        @item.autor
+        <br>
+        @item.editora
+        <br>
+        @item.dataEdicao
+        <br>
+        @item.categoria
+        <br>
+        @item.paginas
+
+    </div>
+
+    <style>
+        .maincontainer{
+            display:flex;
+            flex-direction:column;
+        }
+    </style>
+}

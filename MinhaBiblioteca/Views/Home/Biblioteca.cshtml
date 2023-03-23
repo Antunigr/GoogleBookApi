@@ -20,13 +20,20 @@
                 window.location.href = "/Home/Biblioteca/" + encodeURIComponent(bookName);
             }
         }
+
+        function redirect2(){
+             var bookId = document.getElementById("bookId").value;
+            if (bookId {
+                window.location.href = "/Home/Book/" + encodeURIComponent(bookId)
+            }
+        }
     </script>
 </div>
 
 
 
      <div class="BookExib">
-        @foreach (var item in ViewBag.book)  
+        @foreach (var item in ViewBag.books)  
         {
            <div class="bookContainer">
                 <h3>@item.titulo</h3>
@@ -34,9 +41,10 @@
                 <h5>@item.autor</h5>
                 <br/>
                 <div class="subcontainer">
-                <a class="containerImg" asp-controller="home" asp-action="Book"><img src="@item.linkImg" class="BookImg" /></a>
+                <a class="containerImg" asp-controller="home" asp-action="Book" asp-route-id="@item.idBook "><img src="@item.linkImg" class="BookImg" /></a>
                     <a class="desc">@item.descricao</a>
                 </div>
+
               
 
            </div>         

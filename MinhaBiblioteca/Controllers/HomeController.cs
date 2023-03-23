@@ -28,13 +28,13 @@ namespace MinhaBiblioteca.Controllers
         {
             if(nome == null)
             {
-                List<BookApi> bookApis= new List<BookApi>();
-                ViewBag.book = bookApis;
+                List<BookApi> booksApis= new List<BookApi>();
+                ViewBag.books = booksApis;
             }
             else
             {
                 List<BookApi> data = await bookservice.GetBookName(nome);
-              ViewBag.book = data;
+                ViewBag.books = data;
             }
 
           
@@ -48,10 +48,24 @@ namespace MinhaBiblioteca.Controllers
             return View();
         }
 
-
-        public IActionResult Book()
+        [HttpGet]
+        [Route("Home/Book/{id?}")]
+        public async Task<IActionResult> Book( string? id)
         {
+
+            if(id == null)
+            {
+                List<BookApi> bookApis= new List<BookApi>();
+                ViewBag.book = bookApis;
+            }
+            else
+            {
+                List<BookApi> data = await bookservice.GetDescriptionBook(id);
+                ViewBag.book = data;
+            }
+
             return View();
+
         }
     }
 }
