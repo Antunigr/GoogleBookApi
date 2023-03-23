@@ -1,25 +1,44 @@
-﻿@{
+﻿@model   MinhaBiblioteca.Models.BookApi
+
+@{
     ViewData["Biblioteca"] = "Biblioteca View";
 }
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div>
-        <div class="livros">
-            <h1> Todos os Livros </h1>
-            <a>livro1</a>
-            <br />
-            <a>livro2</a>
-            <br />
-            <a>livro3</a>
-        </div>
+     <div class="livros">
+                <h1> Todos os Livros </h1>
+           
+        <table class="table">
+       
+        @foreach (var item in ViewBag.book)  
+        {
+            <tr>
+                <td>
+                   @item.titulo
+                </td>
+                <td>
+                    @item.autor
+                </td>
+            </tr>
+        }
+        </table>
+     </div>
 
-        <h2>Buscar Livros</h2>
-        <form method="get">
-           <input type="text" name="buscarLivro"/>
-           <input type="submit" value="buscar" />
-        </form>
+    <form method="get" action="/Home/Biblioteca">
+        <input type="text" id="bookName" name="nome" />
+        <input type="submit" value="buscar" onclick="redirect()" />
+    </form>
 
+    <script>
+        function redirect() {
+            var bookName = document.getElementById("bookName").value;
+            if (bookName) {
+                window.location.href = "/Home/Biblioteca/" + encodeURIComponent(bookName);
+            }
+        }
+   </script>
    
 </div>
 
