@@ -20,7 +20,9 @@ namespace MinhaBiblioteca.Services
                 var book = new BookApi
                 {
                     autor = item.volumeInfo.authors != null ? item.volumeInfo.authors[0] : null,
-                    titulo = item.volumeInfo.title
+                    titulo = item.volumeInfo.title,
+                    dataPublicacao = item.volumeInfo.publishedDate,
+                    //categoria = item.volumeInfo.categories
                 };
                 books.Add(book);
             }
@@ -41,8 +43,12 @@ namespace MinhaBiblioteca.Services
 
     public class VolumeInfo
     {
+        public string publishedDate { get; set; }
+        //public string categories { get; set; }
+
         public string title { get; set; }
         public List<string> authors { get; set; }
+        
     }
 
 }

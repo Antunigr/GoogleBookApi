@@ -10,5 +10,9 @@ namespace MinhaBiblioteca.Models
 
         [JsonProperty("authors")]
         public string autor { get; set; }
+
+        [JsonProperty("publishedDate")]
+        public string dataPublicacao { get; set; }
+
     }
 }

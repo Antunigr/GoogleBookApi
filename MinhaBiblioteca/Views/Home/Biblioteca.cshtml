@@ -6,25 +6,7 @@
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<div>
-     <div class="livros">
-                <h1> Todos os Livros </h1>
-           
-        <table class="table">
-       
-        @foreach (var item in ViewBag.book)  
-        {
-            <tr>
-                <td>
-                   @item.titulo
-                </td>
-                <td>
-                    @item.autor
-                </td>
-            </tr>
-        }
-        </table>
-     </div>
+<div class="main">
 
     <form method="get" action="/Home/Biblioteca">
         <input type="text" id="bookName" name="nome" />
@@ -38,8 +20,45 @@
                 window.location.href = "/Home/Biblioteca/" + encodeURIComponent(bookName);
             }
         }
-   </script>
-   
+    </script>
+
+
+
+     <div class="BookExib">
+        @foreach (var item in ViewBag.book)  
+        {
+           <div class="bookContainer">
+                @item.titulo
+                <br/>
+                @item.autor
+                <br />
+                @item.dataPublicacao
+           </div>         
+        }
+     </div>
+
+     <style>
+
+         .BookExib{
+             display:flex;
+             flex-direction:row;
+             height:1900px;
+        }
+
+        .bookContainer{
+            display:flex;
+            padding:20px;
+            width: 50%;
+        }
+
+        .container{
+            background-color:aqua;
+            width:1900px;
+        }
+
+     </style>
+
+  
 </div>
 
 
