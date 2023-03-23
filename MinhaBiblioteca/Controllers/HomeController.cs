@@ -48,6 +48,11 @@ namespace MinhaBiblioteca.Controllers
             return View();
         }
 
+
+        public IActionResult Book()
+        {
+            return View();
+        }
     }
 }
 

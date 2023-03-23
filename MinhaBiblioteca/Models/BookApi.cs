@@ -14,5 +14,11 @@ namespace MinhaBiblioteca.Models
         [JsonProperty("publishedDate")]
         public string dataPublicacao { get; set; }
 
+        [JsonProperty("imageLinks")]
+        public string linkImg { get;set; }
+
+        [JsonProperty("description")]
+        public string descricao { get; set; }
+
     }
 }

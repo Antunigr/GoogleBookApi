@@ -1,5 +1,6 @@
 ﻿using MinhaBiblioteca.Models;
 using Newtonsoft.Json;
+using System.Net;
 using System.Text.Json.Serialization;
 
 namespace MinhaBiblioteca.Services
@@ -21,7 +22,8 @@ namespace MinhaBiblioteca.Services
                 {
                     autor = item.volumeInfo.authors != null ? item.volumeInfo.authors[0] : null,
                     titulo = item.volumeInfo.title,
-                    dataPublicacao = item.volumeInfo.publishedDate,
+                    linkImg = item.volumeInfo.imageLinks.thumbnail,
+                    descricao = item.volumeInfo.description
                     //categoria = item.volumeInfo.categories
                 };
                 books.Add(book);
@@ -41,6 +43,7 @@ namespace MinhaBiblioteca.Services
         public VolumeInfo volumeInfo { get; set; }
     }
 
+
     public class VolumeInfo
     {
         public string publishedDate { get; set; }
@@ -48,7 +51,14 @@ namespace MinhaBiblioteca.Services
 
         public string title { get; set; }
         public List<string> authors { get; set; }
-        
+
+
+        public ImageLinks imageLinks { get; set; }
+        public string description { get; set; }
     }
 
+        public class ImageLinks
+        {
+            public string thumbnail { get; set; }
+        }
 }

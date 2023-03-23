@@ -6,11 +6,11 @@
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<div class="main">
-
+<div class="searchbar">
     <form method="get" action="/Home/Biblioteca">
-        <input type="text" id="bookName" name="nome" />
-        <input type="submit" value="buscar" onclick="redirect()" />
+        <label class="labelSearch"> Digite o nome de um Livro</label>
+        <input class="inputbar" type="text" id="bookName" name="nome" placeholder="'Harry Potter e o Cálice de Fogo'" />
+        <input class="btnbar" type="submit" value="buscar" onclick="redirect()" />
     </form>
 
     <script>
@@ -21,6 +21,7 @@
             }
         }
     </script>
+</div>
 
 
 
@@ -28,11 +29,16 @@
         @foreach (var item in ViewBag.book)  
         {
            <div class="bookContainer">
-                @item.titulo
+                <h3>@item.titulo</h3>
                 <br/>
-                @item.autor
-                <br />
-                @item.dataPublicacao
+                <h5>@item.autor</h5>
+                <br/>
+                <div class="subcontainer">
+                <a class="containerImg" asp-controller="home" asp-action="Book"><img src="@item.linkImg" class="BookImg" /></a>
+                    <a class="desc">@item.descricao</a>
+                </div>
+              
+
            </div>         
         }
      </div>
@@ -40,25 +46,85 @@
      <style>
 
          .BookExib{
+             margin-top:35px;
+             width:80%;
              display:flex;
-             flex-direction:row;
-             height:1900px;
+             flex-direction:column;
+             text-align:center;
+             align-items:center;
         }
 
         .bookContainer{
-            display:flex;
-            padding:20px;
-            width: 50%;
+            width:60%;
+            padding-bottom:100px
         }
 
-        .container{
-            background-color:aqua;
-            width:1900px;
+        .subcontainer{
+            display:flex;
+            flex-direction:row;
+            height:90%;
+            text-align: left;
+            width:100%;
+
+        }
+
+        .labelSearch{
+            font-size:28px;
+            padding-left:10px;
+            font-weight:700;
+        }
+
+        .searchbar{
+            width:50%;
+        }
+
+        .inputbar{
+            width: 100%;
+            padding: 10px 0;
+            font-size: 22px;
+            padding-left: 10px;
+            letter-spacing: 2px;
+
+        }
+
+        .inputbar::placeholder{
+            color: lightgray;
+        }
+
+        .btnbar{
+            margin-top:5px;
+            width:100%;
+        }
+
+        .containerImg{
+            width:40%;
+            height60%;
+        }
+
+        .BookImg{
+            width:70%;
+            height:250px
+        }
+
+        .desc{
+            width:59%;
+        }
+    
+        a{
+            text-decoration:none;
+            color:black;
+            letter-spacing:1px;
+        }
+
+        h3, h5{
+            text-align:left;
+            padding: 0px;
+            margin: 0px
         }
 
      </style>
 
   
-</div>
+
 
 
