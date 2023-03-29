@@ -82,8 +82,6 @@ namespace MinhaBiblioteca.Services
         public SaleInfo saleInfo { get; set; }
 
     }
-
-
     public class VolumeInfo
     {
         public string publishedDate { get; set; }
@@ -102,14 +100,11 @@ namespace MinhaBiblioteca.Services
         public int pageCount { get; set; }
       
     }
-
     public class SaleInfo
     {
         public string? country { get; set; }
         public string? saleability { get; set; }
         public bool? isEbook { get; set; }
-    
-
         public ListPrice listPrice { get; set; }
     }
 

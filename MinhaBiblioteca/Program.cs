@@ -1,9 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<database>(options =>
+               options.UseSqlServer(builder.Configuration.GetConnectionString("CloudDb")
+           ));
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
