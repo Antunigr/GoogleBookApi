@@ -1,4 +1,5 @@
-﻿using MinhaBiblioteca.Models;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MinhaBiblioteca.Models;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text.Json.Serialization;
@@ -20,13 +21,13 @@ namespace MinhaBiblioteca.Services
             {
                 var book = new BookApi
                 {
+                    
                     autor = item.volumeInfo.authors != null ? item.volumeInfo.authors[0] : null,
                     titulo = item.volumeInfo.title,
                     linkImg = item.volumeInfo.imageLinks.thumbnail,
                     descricao = item.volumeInfo.description,
                     idBook = item.id
 
-                    //categoria = item.volumeInfo.categories
                 };
                 books.Add(book);
             }

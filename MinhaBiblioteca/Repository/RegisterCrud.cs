@@ -24,9 +24,6 @@ namespace MinhaBiblioteca.Repository
                 return await _context.registrar.ToListAsync();
             }
 
-            public async Task<RegisterModel> GetId(int id)
-            {
-                return await _context.registrar.FindAsync(id);
-            }
+           
     }
 }

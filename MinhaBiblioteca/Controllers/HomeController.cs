@@ -43,11 +43,6 @@ namespace MinhaBiblioteca.Controllers
 
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
-
         [HttpGet]
         [Route("Home/Book/{id?}")]
         public async Task<IActionResult> Book( string? id)

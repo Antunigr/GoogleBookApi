@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MinhaBiblioteca.Repository;
 using WebApplication1.data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<database>(options =>
                options.UseSqlServer(builder.Configuration.GetConnectionString("CloudDb")
            ));
+
+builder.Services.AddScoped<IRegisterCrud, RegisterCrud>();
+
+
 
 var app = builder.Build();
 
