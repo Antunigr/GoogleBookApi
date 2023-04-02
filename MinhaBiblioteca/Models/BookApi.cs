@@ -15,7 +15,7 @@ namespace MinhaBiblioteca.Models
         public string dataPublicacao { get; set; }
 
         [JsonProperty("imageLinks")]
-        public string linkImg { get;set; }
+        public string? linkImg { get;set; }
 
         [JsonProperty("description")]
         public string descricao { get; set; }
@@ -48,7 +48,7 @@ namespace MinhaBiblioteca.Models
         public bool? Ebook { get; set; }
 
         [JsonProperty("amount")]
-        public decimal? preco { get; set; }
+        public double? preco { get; set; }
 
         [JsonProperty("currencyCode")]
         public string? moeda { get; set; }

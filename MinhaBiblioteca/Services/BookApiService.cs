@@ -24,7 +24,7 @@ namespace MinhaBiblioteca.Services
                     
                     autor = item.volumeInfo.authors != null ? item.volumeInfo.authors[0] : null,
                     titulo = item.volumeInfo.title,
-                    linkImg = item.volumeInfo.imageLinks.thumbnail,
+                    linkImg = item.volumeInfo.imageLinks?.thumbnail ?? "https://savanisbookshop.com/uploads/image/savanisbookshop.jpeg",
                     descricao = item.volumeInfo.description,
                     idBook = item.id
 
@@ -47,23 +47,47 @@ namespace MinhaBiblioteca.Services
 
             foreach (var item in jsonObject.items)
             {
-                var book = new BookApi
+
+                if(item.saleInfo.listPrice != null)
                 {
-                    autor = item.volumeInfo.authors != null ? item.volumeInfo.authors[0] : null,
-                    titulo = item.volumeInfo.title,
-                    linkImg = item.volumeInfo.imageLinks.thumbnail,
-                    descricao = item.volumeInfo.description,
-                    editora = item.volumeInfo.publisher,
-                    dataEdicao = item.volumeInfo.publishedDate,
-                    categoria = item.volumeInfo.categories != null ? item.volumeInfo.categories[0] : null,
-                    paginas = item.volumeInfo.pageCount,
-                    pais = item.saleInfo.country,
-                    disponivel = item.saleInfo.saleability,
-                    Ebook = item.saleInfo.isEbook,
-                    preco = item.saleInfo.listPrice.amount,
-                    moeda = item.saleInfo.listPrice.currencyCode,
-                };
-                books.Add(book);
+                    var book = new BookApi
+                    {
+                        autor = item.volumeInfo.authors != null ? item.volumeInfo.authors[0] : null,
+                        titulo = item.volumeInfo.title,
+                        linkImg = item.volumeInfo.imageLinks?.thumbnail ?? "https://savanisbookshop.com/uploads/image/savanisbookshop.jpeg",
+                        descricao = item.volumeInfo.description,
+                        editora = item.volumeInfo.publisher,
+                        dataEdicao = item.volumeInfo.publishedDate,
+                        categoria = item.volumeInfo.categories != null ? item.volumeInfo.categories[0] : null,
+                        paginas = item.volumeInfo.pageCount,
+                        pais = item.saleInfo.country ?? "pais nao encontrada" ,
+                        disponivel = item.saleInfo.saleability ?? "nao a venda",
+                        Ebook = item.saleInfo.isEbook ?? false,
+                        preco = item.saleInfo.listPrice?.amount ?? 0.00,
+                        moeda = item.saleInfo.listPrice.currencyCode ?? "BRL" ,
+                    };
+                    books.Add(book);
+                }
+                else {
+                    var book = new BookApi
+                    {
+                        autor = item.volumeInfo.authors != null ? item.volumeInfo.authors[0] : null,
+                        titulo = item.volumeInfo.title,
+                        linkImg = item.volumeInfo.imageLinks?.thumbnail ?? "https://savanisbookshop.com/uploads/image/savanisbookshop.jpeg",
+                        descricao = item.volumeInfo.description,
+                        editora = item.volumeInfo.publisher,
+                        dataEdicao = item.volumeInfo.publishedDate,
+                        categoria = item.volumeInfo.categories != null ? item.volumeInfo.categories[0] : null,
+                        paginas = item.volumeInfo.pageCount,
+                        pais = "pais nao encontrada",
+                        disponivel = "nao a venda",
+                        Ebook =  false,
+                        preco = 0.00,
+                        moeda =  "BRL",
+                    };
+                    books.Add(book);
+                }
+             
             }
 
             return books;
@@ -80,7 +104,7 @@ namespace MinhaBiblioteca.Services
 
         public VolumeInfo volumeInfo { get; set; }
         public string id { get;  set; }
-        public SaleInfo saleInfo { get; set; }
+        public SaleInfo? saleInfo { get; set; }
 
     }
     public class VolumeInfo
@@ -90,7 +114,7 @@ namespace MinhaBiblioteca.Services
         public string title { get; set; }
         public List<string> authors { get; set; }
 
-        public ImageLinks imageLinks { get; set; }
+        public ImageLinks? imageLinks { get; set; }
 
         public string description { get; set; }
 
@@ -106,18 +130,18 @@ namespace MinhaBiblioteca.Services
         public string? country { get; set; }
         public string? saleability { get; set; }
         public bool? isEbook { get; set; }
-        public ListPrice listPrice { get; set; }
+        public ListPrice? listPrice { get; set; }
     }
 
     public class ListPrice
     {
-        public decimal? amount { get; set; }
+        public double? amount { get; set; }
         public string? currencyCode { get; set; }
     }
 
     public class ImageLinks
         {
-            public string thumbnail { get; set; }
+            public string? thumbnail { get; set; }
         }
 
       
