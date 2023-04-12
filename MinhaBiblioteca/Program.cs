@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using MinhaBiblioteca;
 using MinhaBiblioteca.Repository;
+using System.Text;
 using WebApplication1.data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +13,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<database>(options =>
                options.UseSqlServer(builder.Configuration.GetConnectionString("CloudDb")
            ));
-
-builder.Services.AddScoped<IRegisterCrud, RegisterCrud>();
-
-
 
 var app = builder.Build();
 
@@ -26,11 +25,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -11,8 +11,8 @@ using WebApplication1.data;
 namespace MinhaBiblioteca.Migrations
 {
     [DbContext(typeof(database))]
-    [Migration("20230328035905_mg")]
-    partial class mg
+    [Migration("20230403012518_AddRoles")]
+    partial class AddRoles
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,9 @@ namespace MinhaBiblioteca.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

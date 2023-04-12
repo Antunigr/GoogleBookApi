@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MinhaBiblioteca.Models;
 using MinhaBiblioteca.Repository;
 
@@ -27,6 +28,7 @@ namespace MinhaBiblioteca.Controllers
 
         [HttpPost]
         [Route("/Register/addUser")]
+        [AllowAnonymous]
         public async Task<IActionResult> AddUser(RegisterModel model)
         {
             await _registerRepository.Create(model);
